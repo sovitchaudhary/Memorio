@@ -37,7 +37,7 @@ import {
   export const pageTitles = [
     {
       url: "/",
-      title: "Feed",
+      title: "Posts",
     },
     {
       url: "/edit-profile",
