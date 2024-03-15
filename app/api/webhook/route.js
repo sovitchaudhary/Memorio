@@ -7,7 +7,9 @@ export async function POST(req) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local");
+    throw new Error(
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"
+    );
   }
 
   // Get the headers
@@ -50,10 +52,18 @@ export async function POST(req) {
   const eventType = evt?.type;
 
   if (eventType === "user.created" || eventType === "user.updated") {
-    const { id, first_name, last_name, image_url, email_addresses, username } = evt?.data;
+    const { id, first_name, last_name, image_url, email_addresses, username } =
+      evt?.data;
 
     try {
-      await createOrUpdateUser(id, first_name, last_name, image_url, email_addresses, username);
+      await createOrUpdateUser(
+        id,
+        first_name,
+        last_name,
+        image_url,
+        email_addresses,
+        username
+      );
 
       return new Response("User is created or updated", {
         status: 200,
